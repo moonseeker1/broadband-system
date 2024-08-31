@@ -1,0 +1,12 @@
+16:52:28.614 [boundedElastic-69] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/schedule/v2/api-docs,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for ruoyi-job"
+16:52:32.035 [boundedElastic-90] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/schedule/v2/api-docs,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for ruoyi-job"
+16:52:40.449 [boundedElastic-99] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/workflow/v2/api-docs,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for ruoyi-activiti"
+16:52:41.944 [boundedElastic-100] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/file/v2/api-docs,异常信息:503 SERVICE_UNAVAILABLE "Unable to find instance for ruoyi-file"
+17:14:02.718 [reactor-http-nio-12] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/api/v3/meta,异常信息:404 NOT_FOUND
+17:14:02.745 [reactor-http-nio-13] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/api/v4/metadata,异常信息:404 NOT_FOUND
+17:45:15.850 [reactor-http-nio-16] ERROR c.r.g.f.AuthFilter - [unauthorizedResponse,104] - [鉴权异常处理]请求路径:/system/menu/list
+17:45:15.850 [reactor-http-nio-14] ERROR c.r.g.f.AuthFilter - [unauthorizedResponse,104] - [鉴权异常处理]请求路径:/code/gen/15
+17:45:15.851 [reactor-http-nio-15] ERROR c.r.g.f.AuthFilter - [unauthorizedResponse,104] - [鉴权异常处理]请求路径:/system/dict/type/optionselect
+20:45:00.176 [reactor-http-nio-1] ERROR c.r.g.f.AuthFilter - [unauthorizedResponse,104] - [鉴权异常处理]请求路径:/system/online/list
+22:45:43.619 [reactor-http-nio-3] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/api/v4/metadata,异常信息:404 NOT_FOUND
+22:45:43.619 [reactor-http-nio-2] ERROR c.r.g.h.GatewayExceptionHandler - [handle,52] - [网关异常处理]请求路径:/api/v3/meta,异常信息:404 NOT_FOUND

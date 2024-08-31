@@ -1,0 +1,20 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/ruoyi-modules/system-account" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-account/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-business-people/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-combo/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-workorder/pom.xml" />
+        <option value="$PROJECT_DIR$/ruoyi-modules/system-node/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
