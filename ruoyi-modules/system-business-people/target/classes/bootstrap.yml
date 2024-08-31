@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 9301
+  port: 9302
 
 # Spring
 spring:
   application:
     # 应用名称
-    name: system-account
+    name: system-business-people
   profiles:
     # 环境配置
     active: dev

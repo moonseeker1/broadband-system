@@ -1,7 +1,6 @@
-package com.system.account;
+package com.system.businessPeople;
 
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
-import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,13 +16,13 @@ import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 @EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
-@MapperScan("com.system.account.mapper")
-public class SystemAccountApplication
+@MapperScan("com.system.businessPeople.mapper")
+public class SystemBusinessPeopleApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(SystemAccountApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  用户账户模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        SpringApplication.run(SystemBusinessPeopleApplication.class, args);
+        System.out.println("(♥◠‿◠)ﾉﾞ  业务员模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +

@@ -2,6 +2,8 @@ package com.system.account.domain.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,7 +21,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 public class BroadbandAccount extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
-
+    @TableId
     /** $column.columnComment */
     private Long accountId;
 
@@ -50,6 +52,7 @@ public class BroadbandAccount extends BaseEntity
     /** $column.columnComment */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private BigDecimal latitude;
+    private String name;
 
     /** 账户余额 */
     @Excel(name = "账户余额")

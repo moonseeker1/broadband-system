@@ -46,80 +46,8 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
     private BroadbandAccountMapper broadbandAccountMapper;
     @Autowired
     private RedisService redisService;
-
-    /**
-     * 查询account
-     * 
-     * @param accountId account主键
-     * @return account
-     */
-    @Override
-    public BroadbandAccount selectBroadbandAccountByAccountId(Long accountId)
-    {
-        return broadbandAccountMapper.selectBroadbandAccountByAccountId(accountId);
-    }
-
-    /**
-     * 查询account列表
-     * 
-     * @param broadbandAccount account
-     * @return account
-     */
-    @Override
-    public List<BroadbandAccount> selectBroadbandAccountList(BroadbandAccount broadbandAccount)
-    {
-        return broadbandAccountMapper.selectBroadbandAccountList(broadbandAccount);
-    }
-
-    /**
-     * 新增account
-     * 
-     * @param broadbandAccount account
-     * @return 结果
-     */
-    @Override
-    public int insertBroadbandAccount(BroadbandAccount broadbandAccount)
-    {
-        broadbandAccount.setCreateTime(DateUtils.getNowDate());
-        return broadbandAccountMapper.insertBroadbandAccount(broadbandAccount);
-    }
-
-    /**
-     * 修改account
-     * 
-     * @param broadbandAccount account
-     * @return 结果
-     */
-    @Override
-    public int updateBroadbandAccount(BroadbandAccount broadbandAccount)
-    {
-        broadbandAccount.setUpdateTime(DateUtils.getNowDate());
-        return broadbandAccountMapper.updateBroadbandAccount(broadbandAccount);
-    }
-
-    /**
-     * 批量删除account
-     * 
-     * @param accountIds 需要删除的account主键
-     * @return 结果
-     */
-    @Override
-    public int deleteBroadbandAccountByAccountIds(Long[] accountIds)
-    {
-        return broadbandAccountMapper.deleteBroadbandAccountByAccountIds(accountIds);
-    }
-
-    /**
-     * 删除account信息
-     * 
-     * @param accountId account主键
-     * @return 结果
-     */
-    @Override
-    public int deleteBroadbandAccountByAccountId(Long accountId)
-    {
-        return broadbandAccountMapper.deleteBroadbandAccountByAccountId(accountId);
-    }
+    @Autowired
+    private SmsUtil smsUtil;
 
     @Override
     public void register(RegisterBody registerBody) {
@@ -160,7 +88,6 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
             String code = Integer.toString(100000 + random.nextInt(900000));
             Map<String,Object> param = new HashMap<>();
             param.put("code", code);
-            SmsUtil smsUtil = new SmsUtil();
             smsUtil.send(param,phoneNumber);
             long timeout = 60;
             redisService.setCacheObject(phoneNumber,code,timeout,TimeUnit.SECONDS);

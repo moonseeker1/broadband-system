@@ -11,6 +11,7 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.ruoyi.common.core.config.AliyunConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -29,7 +30,6 @@ import java.util.Map;
 
 @Component
 public class SmsUtil {
-
     @Value("${aliyun.accessKeyId}")
     private String accessKeyId;
 
@@ -38,6 +38,7 @@ public class SmsUtil {
 
     @Value("${aliyun.regionId}")
     private String regionId;
+
 
     public boolean send(Map<String, Object> param, String phone) {
 
