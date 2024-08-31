@@ -46,3 +46,27 @@
 15:21:56.394 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.83]
 15:21:56.680 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
 15:21:56.822 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+16:29:33.561 [main] INFO  c.a.n.c.e.SearchableProperties - [sortPropertySourceDefaultOrder,197] - properties search order:PROPERTIES->JVM->ENV->DEFAULT_SETTING
+16:29:33.612 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+16:29:33.938 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [init,56] - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+16:29:33.939 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [init,56] - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+16:29:37.581 [main] INFO  c.r.g.RuoYiGenApplication - [logStartupProfileInfo,638] - The following 1 profile is active: "dev"
+16:29:39.120 [main] INFO  i.s.s.b.a.SeataAutoConfiguration - [globalTransactionScanner,63] - Automatically configure Seata
+16:29:39.177 [main] INFO  i.s.c.ConfigurationFactory - [load,69] - load Configuration from :Spring Configuration
+16:29:39.181 [main] INFO  i.s.c.ConfigurationFactory - [buildConfiguration,121] - load Configuration from :Spring Configuration
+16:29:39.367 [main] INFO  i.s.s.a.GlobalTransactionScanner - [initClient,208] - Initializing Global Transaction Clients ... 
+16:29:39.421 [main] INFO  i.s.c.r.n.NettyClientBootstrap - [start,147] - NettyClientBootstrap has started
+16:29:39.436 [main] INFO  i.s.c.r.n.NettyClientChannelManager - [acquireChannel,108] - will connect to 127.0.0.1:8091
+16:29:39.721 [main] INFO  i.s.c.r.n.NettyPoolableFactory - [makeObject,56] - NettyPool create channel to transactionRole:TMROLE,address:127.0.0.1:8091,msg:< RegisterTMRequest{applicationId='ruoyi-gen', transactionServiceGroup='default_tx_group'} >
+16:29:42.119 [main] INFO  i.s.s.a.GlobalTransactionScanner - [initClient,222] - Transaction Manager Client is initialized. applicationId[ruoyi-gen] txServiceGroup[default_tx_group]
+16:29:42.120 [NettyClientSelector_TMROLE_1_1] INFO  i.s.c.r.n.AbstractNettyRemotingClient - [close,488] - ChannelHandlerContext(AbstractNettyRemotingClient$ClientHandler#0, [id: 0x34fdcf9e]) will closed
+16:29:42.130 [main] INFO  i.s.r.d.AsyncWorker - [<init>,73] - Async Commit Buffer Limit: 10000
+16:29:42.131 [main] INFO  i.s.r.d.x.ResourceManagerXA - [init,59] - ResourceManagerXA init ...
+16:29:42.141 [main] INFO  i.s.c.r.n.NettyClientBootstrap - [start,147] - NettyClientBootstrap has started
+16:29:42.142 [main] INFO  i.s.s.a.GlobalTransactionScanner - [initClient,227] - Resource Manager is initialized. applicationId[ruoyi-gen] txServiceGroup[default_tx_group]
+16:29:42.142 [main] INFO  i.s.s.a.GlobalTransactionScanner - [initClient,231] - Global Transaction Clients are initialized. 
+16:29:42.683 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-9202"]
+16:29:42.684 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+16:29:42.684 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.83]
+16:29:42.854 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+16:29:43.116 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
