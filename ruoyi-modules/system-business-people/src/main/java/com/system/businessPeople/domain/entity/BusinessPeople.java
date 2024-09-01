@@ -75,4 +75,5 @@ public class BusinessPeople extends BaseEntity {
     private String status;
 
     private String name;
+    private String nodeName;
 }

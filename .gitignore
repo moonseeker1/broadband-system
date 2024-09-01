@@ -18,3 +18,4 @@ log.*
 log.home_IS_UNDEFINED
 doc/api_doc
 **.log
+**.class

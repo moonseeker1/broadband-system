@@ -14,8 +14,10 @@ import com.system.businessPeople.service.IBusinessPeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import com.ruoyi.common.core.web.controller.BaseController;
 import static com.ruoyi.common.core.web.domain.AjaxResult.success;
-
+import com.ruoyi.common.core.web.page.TableDataInfo;
 
 /**
  * <p>
@@ -27,7 +29,7 @@ import static com.ruoyi.common.core.web.domain.AjaxResult.success;
  */
 @RestController
 @RequestMapping("/business-people")
-public class BusinessPeopleController {
+public class BusinessPeopleController extends BaseController{
     @Autowired
     private IBusinessPeopleService businessPeopleService;
     @Autowired
@@ -47,11 +49,11 @@ public class BusinessPeopleController {
         return R.ok(tokenService.createAccountToken(userInfo));
     }
     @GetMapping("/getInfo")
-    public AjaxResult getInfo(){
+    public R<?> getInfo(){
         BusinessPeopleInfo businessPeopleInfo = new BusinessPeopleInfo();
         businessPeopleInfo.setUserId(SecurityUtils.getUserId());
         businessPeopleInfo.setUserName(SecurityUtils.getUsername());
-        return success(businessPeopleInfo);
+        return R.ok(businessPeopleInfo);
     }
     @PutMapping()
     public AjaxResult update(@RequestBody BusinessPeople businessPeople){
@@ -63,5 +65,16 @@ public class BusinessPeopleController {
         businessPeopleService.removeById(id);
         //TODO:后续校验业务员是否存在工单
         return success();
+    }
+    @GetMapping("/{id}")
+    public R<BusinessPeople> getById(@PathVariable Long id){
+        BusinessPeople businessPeople = businessPeopleService.getById(id);
+        return R.ok(businessPeople);
+    }
+    @GetMapping("/list")
+    public TableDataInfo list(@RequestBody BusinessPeople businessPeople){
+        startPage();
+        List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
+        return getDataTable(list);
     }
 }

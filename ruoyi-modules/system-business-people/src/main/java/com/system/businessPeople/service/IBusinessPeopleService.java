@@ -5,6 +5,8 @@ import com.system.businessPeople.domain.dto.RegisterBody;
 import com.system.businessPeople.domain.entity.BusinessPeople;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -18,4 +20,6 @@ public interface IBusinessPeopleService extends IService<BusinessPeople> {
     void add(RegisterBody registerBody);
 
     LoginUser login(String phoneNumber, String password);
+
+    List<BusinessPeople> listBusinessPeople(BusinessPeople businessPeople);
 }

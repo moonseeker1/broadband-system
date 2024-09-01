@@ -21,4 +21,6 @@ public interface IBroadbandAccountService extends IService<BroadbandAccount>
     void sendCode(String phoneNumber);
 
     LoginUser login(String phoneNumber, String password);
+
+    List<BroadbandAccount> selectBroadbandAccount(BroadbandAccount broadbandAccount);
 }

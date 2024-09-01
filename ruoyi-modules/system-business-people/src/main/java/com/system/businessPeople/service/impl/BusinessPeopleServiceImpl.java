@@ -67,4 +67,15 @@ public class BusinessPeopleServiceImpl extends ServiceImpl<BusinessPeopleMapper,
             }
         }
     }
+
+    @Override
+    public List<BusinessPeople> listBusinessPeople(BusinessPeople businessPeople) {
+        LambdaQueryWrapper<BusinessPeople> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(StringUtils.isNotBlank(businessPeople.getUserName()),BusinessPeople::getUserName,businessPeople.getUserName())
+//                .eq(StringUtils.isNotBlank(),BusinessPeople::getName,businessPeople.getName())
+                .eq(StringUtils.isNotBlank(businessPeople.getNodeName()),BusinessPeople::getNodeName,businessPeople.getNodeName())
+                .eq(StringUtils.isNotBlank(businessPeople.getName()),BusinessPeople::getName,businessPeople.getName());
+        List<BusinessPeople> list = businessPeopleMapper.selectList(lambdaQueryWrapper);
+        return list;
+    }
 }
