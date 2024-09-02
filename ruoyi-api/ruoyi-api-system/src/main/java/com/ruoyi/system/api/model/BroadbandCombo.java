@@ -29,14 +29,14 @@ public class BroadbandCombo implements Serializable {
 
     @TableId(value = "combo_id", type = IdType.AUTO)
     private Long comboId;
-    private String name;
+    private String comboName;
 
     /**
      * 0-按月，1-按年
      */
-    private Integer billingUnit;
+    private Integer unit;
 
-    private Integer billingValue;
+    private Integer value;
 
     private BigDecimal price;
 
