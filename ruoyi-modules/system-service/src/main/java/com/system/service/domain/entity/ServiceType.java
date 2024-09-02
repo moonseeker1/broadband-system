@@ -1,12 +1,17 @@
 package com.system.service.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
 /**
@@ -28,8 +33,9 @@ public class ServiceType implements Serializable {
     /**
      * 编目id
      */
+    @Getter
     @TableId(value = "type_id", type = IdType.AUTO)
-    private Long typeId;
+    private String typeId;
 
     /**
      * 编目名称
@@ -65,6 +71,7 @@ public class ServiceType implements Serializable {
      * 备注
      */
     private String remark;
-
+    @TableField(exist = false)
+    private List<ServiceType> children = new ArrayList<ServiceType>();
 
 }

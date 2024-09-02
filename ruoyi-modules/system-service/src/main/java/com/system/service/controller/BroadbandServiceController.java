@@ -1,9 +1,16 @@
 package com.system.service.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.ruoyi.common.core.domain.R;
+import com.ruoyi.common.core.web.controller.BaseController;
+import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.web.page.TableDataInfo;
+import com.system.service.domain.entity.BroadbandService;
+import com.system.service.service.IBroadbandServiceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -15,6 +22,35 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/broadband-service")
-public class BroadbandServiceController {
+public class BroadbandServiceController extends BaseController {
+    @Autowired
+    IBroadbandServiceService broadbandServiceService;
+    @PostMapping("/add")
+    public AjaxResult add(@RequestBody BroadbandService broadbandService){
+        broadbandServiceService.save(broadbandService);
+        return success();
+    }
+    @DeleteMapping("/{id}")
+    public AjaxResult delete(@PathVariable Long id){
+        //TODO:判断是否存在该服务工单
+        broadbandServiceService.removeById(id);
+        return success();
+    }
+    @PutMapping("/update")
+    public AjaxResult update(@RequestBody BroadbandService broadbandService){
+        broadbandServiceService.updateById(broadbandService);
+        return success();
+    }
+    @GetMapping("/{id}")
+    public R<BroadbandService> getById(@PathVariable Long id){
+        BroadbandService broadbandService = broadbandServiceService.getById(id);
+        return R.ok(broadbandService);
+    }
 
+    @GetMapping("/list")
+    public TableDataInfo list(@RequestBody BroadbandService broadbandService){
+        startPage();
+        List<BroadbandService> list = broadbandServiceService.listBroadbandService(broadbandService);
+        return getDataTable(list);
+    }
 }
