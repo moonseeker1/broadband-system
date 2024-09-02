@@ -75,4 +75,5 @@ public class TokenController
         sysLoginService.register(registerBody.getUsername(), registerBody.getPassword());
         return R.ok();
     }
+
 }

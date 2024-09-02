@@ -2,6 +2,7 @@ package com.system.workorder;
 
 import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
+import com.ruoyi.common.security.annotation.EnableSystemFeignClients;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

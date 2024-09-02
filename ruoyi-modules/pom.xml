@@ -15,6 +15,8 @@
         <module>ruoyi-file</module>
         <module>system-account</module>
         <module>system-business-people</module>
+        <module>system-node</module>
+        <module>system-combo</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>
@@ -41,6 +43,11 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.29</version>
         </dependency>
     </dependencies>
 

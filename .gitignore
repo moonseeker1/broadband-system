@@ -1,21 +1,47 @@
-/target/
-.idea
-*.iml
-.tags
-.tags_sorted_by_file
-.pyc
-__pycache__
-.cache
-.settings
+######################################################################
+# Build Tools
+
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+######################################################################
+# IDE
+
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.DS_Store
-*.pid
-*Help
-target
-log.*
-.DS_Store
-log.home_IS_UNDEFINED
-doc/api_doc
-**.log
-**.class
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### JRebel ###
+rebel.xml
+
+### NetBeans ###
+nbproject/private/
+build/*
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+######################################################################
+# Others
+*.log
+*.xml.versionsBackup
+*.swp
+
+!*/build/*.java
+!*/build/*.html
+!*/build/*.xml

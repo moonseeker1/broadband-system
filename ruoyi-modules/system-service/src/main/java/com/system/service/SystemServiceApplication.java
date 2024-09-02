@@ -2,6 +2,7 @@ package com.system.service;
 
 import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
+import com.ruoyi.common.security.annotation.EnableSystemFeignClients;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -14,8 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @EnableCustomConfig
 @EnableCustomSwagger2
-@EnableRyFeignClients
 @SpringBootApplication
+@EnableRyFeignClients
 @MapperScan("com.system.service.mapper")
 public class SystemServiceApplication
 {

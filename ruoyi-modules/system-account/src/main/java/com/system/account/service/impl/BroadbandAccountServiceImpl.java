@@ -126,7 +126,8 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
     public List<BroadbandAccount> selectBroadbandAccount(BroadbandAccount broadbandAccount) {
         LambdaQueryWrapper<BroadbandAccount> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(StringUtils.isNotBlank(broadbandAccount.getPhoneNumber()),BroadbandAccount::getPhoneNumber,broadbandAccount.getPhoneNumber())
-                .eq(StringUtils.isNotBlank(broadbandAccount.getName()),BroadbandAccount::getName,broadbandAccount.getName());
+                .eq(StringUtils.isNotBlank(broadbandAccount.getName()),BroadbandAccount::getName,broadbandAccount.getName())
+                .eq(broadbandAccount.getComboId()!=null,BroadbandAccount::getComboId,broadbandAccount.getComboId());
         List<BroadbandAccount> list = broadbandAccountMapper.selectList(lambdaQueryWrapper);
         return list;
     }

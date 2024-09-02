@@ -1,14 +1,15 @@
-package com.system.combo.domain.entity;
+package com.ruoyi.system.api.model;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -26,16 +27,16 @@ public class BroadbandCombo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "combo_id")
+    @TableId(value = "combo_id", type = IdType.AUTO)
     private Long comboId;
-    private String comboName;
+    private String name;
 
     /**
      * 0-按月，1-按年
-//     */
-    private Integer unit;
+     */
+    private Integer billingUnit;
 
-    private Integer value;
+    private Integer billingValue;
 
     private BigDecimal price;
 
@@ -43,7 +44,6 @@ public class BroadbandCombo implements Serializable {
      * 创建用户id
      */
     private String createBy;
-    private Integer bandwidth;
 
     /**
      * 创建时间

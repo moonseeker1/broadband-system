@@ -3,6 +3,8 @@ package com.system.combo.service;
 import com.system.combo.domain.entity.BroadbandCombo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBroadbandComboService extends IService<BroadbandCombo> {
 
+
+    List<BroadbandCombo> listCombo(BroadbandCombo broadbandCombo);
 }

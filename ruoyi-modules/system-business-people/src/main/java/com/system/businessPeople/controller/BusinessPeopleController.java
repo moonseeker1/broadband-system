@@ -77,4 +77,12 @@ public class BusinessPeopleController extends BaseController{
         List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
         return getDataTable(list);
     }
+    /**
+     *  远程调用查询
+     */
+    @PostMapping("/remote/list")
+    public R<List<BusinessPeople>> remoteList(@RequestBody BusinessPeople businessPeople){
+        List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
+        return R.ok(list);
+    }
 }

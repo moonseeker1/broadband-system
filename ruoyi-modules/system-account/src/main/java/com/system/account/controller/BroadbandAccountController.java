@@ -2,9 +2,13 @@ package com.system.account.controller;
 
 import java.util.List;
 
+import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
+import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.security.service.TokenService;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.system.api.RemoteComboService;
+import com.ruoyi.system.api.model.BroadbandCombo;
 import com.ruoyi.system.api.model.LoginUser;
 import com.system.account.domain.dto.LoginBody;
 import com.system.account.domain.dto.RegisterBody;
@@ -38,6 +42,8 @@ public class BroadbandAccountController extends BaseController
     private IBroadbandAccountService broadbandAccountService;
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private RemoteComboService remoteComboService;
 
 
     @GetMapping("/sendCode/{phoneNumber}")
@@ -86,5 +92,42 @@ public class BroadbandAccountController extends BaseController
         startPage();
         List<BroadbandAccount> list = broadbandAccountService.selectBroadbandAccount(broadbandAccount);
         return getDataTable(list);
+    }
+    @PostMapping("/remote/list")
+    public R<List<BroadbandAccount>> remoteList(@RequestBody BroadbandAccount broadbandAccount){
+        List<BroadbandAccount> list = broadbandAccountService.selectBroadbandAccount(broadbandAccount);
+        return R.ok(list);
+    }
+    @GetMapping("/combo")
+    public AjaxResult getCombo(){
+        Long id = SecurityUtils.getUserId();
+        BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
+        BroadbandCombo broadbandCombo = remoteComboService.get(broadbandAccount.getComboId(), SecurityConstants.INNER).getData();
+        return success(broadbandCombo);
+    }
+    @PostMapping("/addCombo/{id}")
+    public AjaxResult addCombo(@PathVariable Long id){
+        Long userId = SecurityUtils.getUserId();
+        BroadbandAccount broadbandAccount = broadbandAccountService.getById(userId);
+        BroadbandCombo broadbandCombo = remoteComboService.get(id,SecurityConstants.INNER).getData();
+        if(broadbandAccount.getComboId()!=null){
+            throw new ServiceException("您已存在套餐无法添加");
+        }
+        else{
+            if(broadbandAccount.getAmount().compareTo(broadbandCombo.getPrice())<0){
+                throw new ServiceException("你的余额不足");
+            }
+            broadbandAccount.setComboId(id);
+            broadbandAccountService.updateById(broadbandAccount);
+        }
+        return success();
+    }
+    @PostMapping("/addAmount")
+    public AjaxResult addAmount(@RequestBody BroadbandAccount broadbandAccount){
+        broadbandAccount.setAccountId(SecurityUtils.getUserId());
+        BroadbandAccount broadbandAccount1 = broadbandAccountService.getById(SecurityUtils.getUserId());
+        broadbandAccount.setAmount(broadbandAccount1.getAmount().add(broadbandAccount.getAmount()));
+        broadbandAccountService.updateById(broadbandAccount);
+        return success();
     }
 }
