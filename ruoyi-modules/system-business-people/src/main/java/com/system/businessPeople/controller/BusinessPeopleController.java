@@ -51,7 +51,7 @@ public class BusinessPeopleController extends BaseController{
     @GetMapping("/getInfo")
     public R<?> getInfo(){
         BusinessPeopleInfo businessPeopleInfo = new BusinessPeopleInfo();
-        businessPeopleInfo.setUserId(SecurityUtils.getUserId());
+        businessPeopleInfo.setUserId(SecurityUtils.getUserId().toString());
         businessPeopleInfo.setUserName(SecurityUtils.getUsername());
         return R.ok(businessPeopleInfo);
     }
