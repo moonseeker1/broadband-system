@@ -26,6 +26,7 @@ public class WorkOrderController extends BaseController {
     IWorkOrderService workOrderService;
     @PostMapping("/generateOrder")
     public AjaxResult generateOrder(@RequestBody WorkOrder workorder){
+        workOrderService.save(workorder);
         return success();
     }
     @DeleteMapping("{id}")

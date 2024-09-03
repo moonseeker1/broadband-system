@@ -65,7 +65,7 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
         if(StringUtils.isNotBlank(cacheCode)){
             if(cacheCode.equals(code)){
                 BroadbandAccount broadbandAccount = new BroadbandAccount();
-                broadbandAccount.setAccountId(IdUtil.getSnowflake().nextId());
+                broadbandAccount.setAccountId(IdUtil.getSnowflake().nextIdStr());
                 broadbandAccount.setPhoneNumber(phoneNumber);
                 broadbandAccount.setPassword(password);
                 broadbandAccount.setAmount(BigDecimal.ZERO);
@@ -112,7 +112,7 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
         }else{
             if(SecurityUtils.matchesPassword(password,list.get(0).getPassword())){
                 LoginUser useInfo = new LoginUser();
-                useInfo.setUserid(list.get(0).getAccountId());
+                useInfo.setUserid(Long.valueOf(list.get(0).getAccountId()));
                 useInfo.setUsername(list.get(0).getPhoneNumber());
                 return useInfo;
             }else{

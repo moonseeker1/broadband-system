@@ -34,7 +34,7 @@ public class BroadbandComboController extends BaseController {
     RemoteAccountService remoteAccountService;
     @PostMapping("/add")
     public AjaxResult add(@RequestBody BroadbandCombo broadbandCombo){
-        broadbandCombo.setComboId(IdUtil.getSnowflakeNextId());
+        broadbandCombo.setComboId(IdUtil.getSnowflakeNextIdStr());
         broadbandComboService.save(broadbandCombo);
         return success();
     }

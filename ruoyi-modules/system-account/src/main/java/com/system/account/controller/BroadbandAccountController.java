@@ -124,7 +124,7 @@ public class BroadbandAccountController extends BaseController
     }
     @PostMapping("/addAmount")
     public AjaxResult addAmount(@RequestBody BroadbandAccount broadbandAccount){
-        broadbandAccount.setAccountId(SecurityUtils.getUserId());
+        broadbandAccount.setAccountId(SecurityUtils.getUserId().toString());
         BroadbandAccount broadbandAccount1 = broadbandAccountService.getById(SecurityUtils.getUserId());
         broadbandAccount.setAmount(broadbandAccount1.getAmount().add(broadbandAccount.getAmount()));
         broadbandAccountService.updateById(broadbandAccount);

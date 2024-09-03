@@ -35,7 +35,7 @@ public class NodeController extends BaseController {
     RemoteBusinessService businessService;
     @PostMapping("/add")
     public AjaxResult add(@RequestBody Node node){
-        node.setNodeId(IdUtil.getSnowflake().nextId());
+        node.setNodeId(IdUtil.getSnowflakeNextIdStr());
         nodeService.save(node);
         return success();
     }

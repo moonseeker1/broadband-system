@@ -1,6 +1,7 @@
 package com.system.service.controller;
 
 
+import cn.hutool.core.util.IdUtil;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -27,6 +28,7 @@ public class BroadbandServiceController extends BaseController {
     IBroadbandServiceService broadbandServiceService;
     @PostMapping("/add")
     public AjaxResult add(@RequestBody BroadbandService broadbandService){
+        broadbandService.setBroadbandServiceId(IdUtil.getSnowflakeNextIdStr());
         broadbandServiceService.save(broadbandService);
         return success();
     }

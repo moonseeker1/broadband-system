@@ -38,7 +38,7 @@ public class BusinessPeopleServiceImpl extends ServiceImpl<BusinessPeopleMapper,
             throw new ServiceException("该用户已注册");
         }
         BusinessPeople businessPeople = new BusinessPeople();
-        businessPeople.setBusinessPeopleId(IdUtil.getSnowflake().nextId());
+        businessPeople.setBusinessPeopleId(IdUtil.getSnowflake().nextIdStr());
         businessPeople.setPassword(SecurityUtils.encryptPassword(registerBody.getPassword()));
         businessPeople.setUserName(registerBody.getUsername());
         businessPeopleMapper.insert(businessPeople);
@@ -59,7 +59,7 @@ public class BusinessPeopleServiceImpl extends ServiceImpl<BusinessPeopleMapper,
         }else{
             if(SecurityUtils.matchesPassword(password,list.get(0).getPassword())){
                 LoginUser useInfo = new LoginUser();
-                useInfo.setUserid(list.get(0).getBusinessPeopleId());
+                useInfo.setUserid(Long.valueOf(list.get(0).getBusinessPeopleId()));
                 useInfo.setUsername(list.get(0).getUserName());
                 return useInfo;
             }else{
