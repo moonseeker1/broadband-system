@@ -29,6 +29,8 @@ public class BroadbandServiceController extends BaseController {
     @PostMapping("/add")
     public AjaxResult add(@RequestBody BroadbandService broadbandService){
         broadbandService.setBroadbandServiceId(IdUtil.getSnowflakeNextIdStr());
+        BroadbandService broadbandService1 = broadbandServiceService.getById(broadbandService);
+        broadbandService.setBroadbandServiceName(broadbandService1.getBroadbandServiceName());
         broadbandServiceService.save(broadbandService);
         return success();
     }
