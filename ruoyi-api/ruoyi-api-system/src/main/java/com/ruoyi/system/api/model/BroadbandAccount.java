@@ -20,7 +20,7 @@ public class BroadbandAccount extends BaseEntity
     private static final long serialVersionUID = 1L;
     @TableId
     /** $column.columnComment */
-    private Long accountId;
+    private String accountId;
 
     /** 手机号 */
     @Excel(name = "手机号")
@@ -32,7 +32,7 @@ public class BroadbandAccount extends BaseEntity
 
     /** $column.columnComment */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-    private Long comboId;
+    private String comboId;
 
     /** $column.columnComment */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")

@@ -6,10 +6,7 @@ import com.ruoyi.common.core.domain.R;
 import com.ruoyi.system.api.factory.RemoteFileFallbackFactory;
 import com.ruoyi.system.api.model.BusinessPeople;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +14,7 @@ import java.util.List;
 public interface RemoteBusinessService {
     @PostMapping("business-people/remote/list")
     public R<List<BusinessPeople>> remoteList(@RequestBody BusinessPeople businessPeople,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    @GetMapping("/business-people/{id}")
+    public R<BusinessPeople> getById(@PathVariable("id") String id,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 
 }

@@ -34,17 +34,9 @@ public class WorkOrder implements Serializable {
 
     private String businessPeopleId;
 
-    private Integer accountId;
+    private String accountId;
 
-    /**
-     * 编目id
-     */
-    private String typeId;
 
-    /**
-     * 编目名称
-     */
-    private String typeName;
     private Integer state;
 
     /**

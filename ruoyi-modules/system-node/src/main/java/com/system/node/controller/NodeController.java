@@ -40,7 +40,7 @@ public class NodeController extends BaseController {
         return success();
     }
     @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    public AjaxResult delete(@PathVariable String id){
         BusinessPeople businessPeople = new BusinessPeople();
         businessPeople.setNodeId(id);
         if(!businessService.remoteList(businessPeople, SecurityConstants.INNER).getData().isEmpty()){
@@ -55,7 +55,7 @@ public class NodeController extends BaseController {
         return success();
     }
     @GetMapping("/{id}")
-    public R<Node> getById(@PathVariable Long id){
+    public R<Node> getById(@PathVariable String id){
         Node node = nodeService.getById(id);
         return R.ok(node);
     }

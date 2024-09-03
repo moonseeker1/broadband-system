@@ -28,13 +28,13 @@ public class BusinessPeople extends BaseEntity {
      * 用户ID
      */
     @TableId(value = "business_people_id", type = IdType.AUTO)
-    private Long businessPeopleId;
+    private String businessPeopleId;
 
     /**
      * 节点id
 
      */
-    private Long nodeId;
+    private String nodeId;
 
     /**
      * 用户账号

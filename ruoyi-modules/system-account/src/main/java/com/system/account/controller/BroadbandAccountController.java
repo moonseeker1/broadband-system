@@ -77,13 +77,13 @@ public class BroadbandAccountController extends BaseController
         return success();
     }
     @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    public AjaxResult delete(@PathVariable String id){
         broadbandAccountService.removeById(id);
         //TODO:后续校验用户是否存在套餐
         return success();
     }
     @GetMapping("/{id}")
-    public R<BroadbandAccount> getById(@PathVariable long id){
+    public R<BroadbandAccount> getById(@PathVariable String id){
         BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
         return R.ok(broadbandAccount);
     }
@@ -106,7 +106,7 @@ public class BroadbandAccountController extends BaseController
         return success(broadbandCombo);
     }
     @PostMapping("/addCombo/{id}")
-    public AjaxResult addCombo(@PathVariable Long id){
+    public AjaxResult addCombo(@PathVariable String id){
         Long userId = SecurityUtils.getUserId();
         BroadbandAccount broadbandAccount = broadbandAccountService.getById(userId);
         BroadbandCombo broadbandCombo = remoteComboService.get(id,SecurityConstants.INNER).getData();

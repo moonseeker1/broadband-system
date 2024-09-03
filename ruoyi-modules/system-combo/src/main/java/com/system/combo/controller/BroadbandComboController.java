@@ -44,7 +44,7 @@ public class BroadbandComboController extends BaseController {
         return success();
     }
     @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    public AjaxResult delete(@PathVariable String id){
         BroadbandAccount broadbandAccount = new BroadbandAccount();
         broadbandAccount.setComboId(id);
         if(!remoteAccountService.remoteList(broadbandAccount, SecurityConstants.INNER).getData().isEmpty()){
@@ -56,7 +56,7 @@ public class BroadbandComboController extends BaseController {
         return success();
     }
     @GetMapping("/{id}")
-    public R<BroadbandCombo> get(@PathVariable Long id){
+    public R<BroadbandCombo> get(@PathVariable String id){
         BroadbandCombo broadbandCombo = broadbandComboService.getById(id);
         return R.ok(broadbandCombo);
     }

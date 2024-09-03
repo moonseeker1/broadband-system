@@ -7,7 +7,9 @@ import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.system.service.domain.entity.BroadbandService;
+import com.system.service.domain.entity.ServiceType;
 import com.system.service.service.IBroadbandServiceService;
+import com.system.service.service.IServiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,16 +28,18 @@ import java.util.List;
 public class BroadbandServiceController extends BaseController {
     @Autowired
     IBroadbandServiceService broadbandServiceService;
+    @Autowired
+    IServiceTypeService serviceTypeService;
     @PostMapping("/add")
     public AjaxResult add(@RequestBody BroadbandService broadbandService){
         broadbandService.setBroadbandServiceId(IdUtil.getSnowflakeNextIdStr());
-        BroadbandService broadbandService1 = broadbandServiceService.getById(broadbandService);
-        broadbandService.setBroadbandServiceName(broadbandService1.getBroadbandServiceName());
+        ServiceType serviceType = serviceTypeService.getById(broadbandService.getTypeId());
+        broadbandService.setTypeName(serviceType.getTypeName());
         broadbandServiceService.save(broadbandService);
         return success();
     }
     @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    public AjaxResult delete(@PathVariable String id){
         //TODO:判断是否存在该服务工单
         broadbandServiceService.removeById(id);
         return success();
@@ -46,7 +50,7 @@ public class BroadbandServiceController extends BaseController {
         return success();
     }
     @GetMapping("/{id}")
-    public R<BroadbandService> getById(@PathVariable Long id){
+    public R<BroadbandService> getById(@PathVariable String id){
         BroadbandService broadbandService = broadbandServiceService.getById(id);
         return R.ok(broadbandService);
     }

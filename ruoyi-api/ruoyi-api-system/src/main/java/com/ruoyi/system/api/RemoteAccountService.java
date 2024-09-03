@@ -5,9 +5,7 @@ import com.ruoyi.common.core.domain.R;
 import com.ruoyi.system.api.model.BroadbandAccount;
 import com.ruoyi.system.api.model.BusinessPeople;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,4 +13,6 @@ import java.util.List;
 public interface RemoteAccountService {
     @PostMapping("account/remote/list")
     public R<List<BusinessPeople>> remoteList(@RequestBody BroadbandAccount broadbandAccount, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    @GetMapping("/account/{id}")
+    public R<BroadbandAccount> getById(@PathVariable("id") String id,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

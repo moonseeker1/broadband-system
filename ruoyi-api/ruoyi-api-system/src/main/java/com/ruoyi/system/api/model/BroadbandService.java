@@ -1,14 +1,15 @@
-package com.system.service.domain.entity;
+package com.ruoyi.system.api.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -34,8 +35,6 @@ public class BroadbandService implements Serializable {
 
     @TableField("type_id")
     private String typeId;
-    @TableField("type_name")
-    private String typeName;
 
     /**
      * 创建用户id
@@ -66,6 +65,8 @@ public class BroadbandService implements Serializable {
      */
     @TableField("remark")
     private String remark;
+    @TableField("type_name")
+    private String typeName;
 
 
 }

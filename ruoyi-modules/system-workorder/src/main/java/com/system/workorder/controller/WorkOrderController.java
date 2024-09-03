@@ -1,14 +1,19 @@
 package com.system.workorder.controller;
 
 
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.system.api.RemoteAccountService;
+import com.ruoyi.system.api.RemoteBusinessService;
 import com.system.workorder.domain.entity.WorkOrder;
 
+import com.system.workorder.domain.vo.WorkOrderDetails;
 import com.system.workorder.service.IWorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,13 +29,15 @@ import org.springframework.web.bind.annotation.*;
 public class WorkOrderController extends BaseController {
     @Autowired
     IWorkOrderService workOrderService;
+
     @PostMapping("/generateOrder")
     public AjaxResult generateOrder(@RequestBody WorkOrder workorder){
+        workorder.setWorkOrderId(IdUtil.getSnowflakeNextIdStr());
         workOrderService.save(workorder);
         return success();
     }
-    @DeleteMapping("{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public AjaxResult delete(@PathVariable String id){
         LambdaQueryWrapper<WorkOrder> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(id!=null,WorkOrder::getWorkOrderId,id);
         WorkOrder workorder = workOrderService.getById(id);
@@ -39,6 +46,11 @@ public class WorkOrderController extends BaseController {
         }
         workOrderService.removeById(id);
         return success();
+    }
+    @GetMapping("/{id}")
+    public AjaxResult getDetails(@PathVariable String id){
+        WorkOrderDetails workOrderDetails = workOrderService.getDetails(id);
+        return success(workOrderDetails);
     }
 
 }

@@ -67,7 +67,7 @@ public class BusinessPeopleController extends BaseController{
         return success();
     }
     @GetMapping("/{id}")
-    public R<BusinessPeople> getById(@PathVariable Long id){
+    public R<BusinessPeople> getById(@PathVariable String id){
         BusinessPeople businessPeople = businessPeopleService.getById(id);
         return R.ok(businessPeople);
     }
