@@ -67,7 +67,7 @@ public class BroadbandAccountController extends BaseController
     @GetMapping("/getInfo")
     public AjaxResult getInfo(){
         AccountInfo accountInfo = new AccountInfo();
-        accountInfo.setUserId(SecurityUtils.getUserId());
+        accountInfo.setUserId(SecurityUtils.getUserId().toString());
         accountInfo.setUserName(SecurityUtils.getUsername());
         return success(accountInfo);
     }
