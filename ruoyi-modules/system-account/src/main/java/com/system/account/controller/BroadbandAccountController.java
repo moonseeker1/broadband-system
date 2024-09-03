@@ -2,6 +2,7 @@ package com.system.account.controller;
 
 import java.util.List;
 
+import cn.hutool.core.date.DateTime;
 import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
@@ -107,19 +108,7 @@ public class BroadbandAccountController extends BaseController
     }
     @PostMapping("/addCombo/{id}")
     public AjaxResult addCombo(@PathVariable String id){
-        Long userId = SecurityUtils.getUserId();
-        BroadbandAccount broadbandAccount = broadbandAccountService.getById(userId);
-        BroadbandCombo broadbandCombo = remoteComboService.get(id,SecurityConstants.INNER).getData();
-        if(broadbandAccount.getComboId()!=null){
-            throw new ServiceException("您已存在套餐无法添加");
-        }
-        else{
-            if(broadbandAccount.getAmount().compareTo(broadbandCombo.getPrice())<0){
-                throw new ServiceException("你的余额不足");
-            }
-            broadbandAccount.setComboId(id);
-            broadbandAccountService.updateById(broadbandAccount);
-        }
+        broadbandAccountService.addCombo(id);
         return success();
     }
     @PostMapping("/addAmount")

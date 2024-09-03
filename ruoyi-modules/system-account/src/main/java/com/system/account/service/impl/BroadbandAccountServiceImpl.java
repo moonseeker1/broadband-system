@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.injector.methods.SelectPage;
@@ -21,7 +22,9 @@ import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.ip.IpUtils;
 import com.ruoyi.common.redis.service.RedisService;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.system.api.RemoteComboService;
 import com.ruoyi.system.api.domain.SysUser;
+import com.ruoyi.system.api.model.BroadbandCombo;
 import com.ruoyi.system.api.model.LoginUser;
 import com.system.account.domain.dto.RegisterBody;
 import com.system.account.domain.entity.BroadbandAccount;
@@ -48,6 +51,8 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
     private RedisService redisService;
     @Autowired
     private SmsUtil smsUtil;
+    @Autowired
+    private RemoteComboService remoteComboService;
 
     @Override
     public void register(RegisterBody registerBody) {
@@ -130,5 +135,31 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
                 .eq(broadbandAccount.getComboId()!=null,BroadbandAccount::getComboId,broadbandAccount.getComboId());
         List<BroadbandAccount> list = broadbandAccountMapper.selectList(lambdaQueryWrapper);
         return list;
+    }
+
+    @Override
+    public void addCombo(String id) {
+        Long userId = SecurityUtils.getUserId();
+        BroadbandAccount broadbandAccount = broadbandAccountMapper.selectById(userId);
+        BroadbandCombo broadbandCombo = remoteComboService.get(id,SecurityConstants.INNER).getData();
+        if(broadbandAccount.getComboId()!=null){
+            throw new ServiceException("您已存在套餐无法添加");
+        }
+        else{
+            if(broadbandAccount.getAmount().compareTo(broadbandCombo.getPrice())<0){
+                throw new ServiceException("你的余额不足");
+            }
+            broadbandAccount.setComboId(id);
+            broadbandAccount.setStatus("1");
+            broadbandAccount.setBeginTime(DateTime.now());
+
+            if(broadbandCombo.getUnit()==0){
+                broadbandAccount.setEndTime(DateUtils.addMonths(DateTime.now(),broadbandCombo.getValue()));
+            }
+            if(broadbandCombo.getUnit()==1){
+                broadbandAccount.setEndTime(DateUtils.addYears(DateTime.now(),broadbandCombo.getValue()));
+            }
+            broadbandAccountMapper.updateById(broadbandAccount);
+        }
     }
 }
