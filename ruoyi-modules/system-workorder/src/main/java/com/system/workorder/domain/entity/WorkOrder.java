@@ -20,19 +20,19 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("workorder")
-public class Workorder implements Serializable {
+@TableName("work_order")
+public class WorkOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "workorder_id", type = IdType.AUTO)
-    private Long workorderId;
+    @TableId(value = "work_order_id", type = IdType.AUTO)
+    private String workOrderId;
 
-    private String workorderName;
+    private String workOrderName;
 
-    private Integer serviceId;
+    private String serviceId;
 
-    private Integer businessPeopleId;
+    private String businessPeopleId;
 
     private Integer accountId;
 
@@ -45,6 +45,7 @@ public class Workorder implements Serializable {
      * 编目名称
      */
     private String typeName;
+    private Integer state;
 
     /**
      * 创建用户id

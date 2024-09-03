@@ -27,7 +27,7 @@ public class BroadbandService implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "broadband_service_id", type = IdType.AUTO)
-    private Long broadbandServiceId;
+    private String broadbandServiceId;
 
     @TableField("broadband_service_name")
     private String broadbandServiceName;

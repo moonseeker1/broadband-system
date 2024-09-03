@@ -26,7 +26,7 @@ public class Node implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "node_id", type = IdType.AUTO)
-    private Long nodeId;
+    private String nodeId;
 
     private Double longitude;
 

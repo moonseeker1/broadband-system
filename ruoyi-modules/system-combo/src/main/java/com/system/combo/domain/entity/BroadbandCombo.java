@@ -27,7 +27,7 @@ public class BroadbandCombo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "combo_id")
-    private Long comboId;
+    private String comboId;
     private String comboName;
 
     /**

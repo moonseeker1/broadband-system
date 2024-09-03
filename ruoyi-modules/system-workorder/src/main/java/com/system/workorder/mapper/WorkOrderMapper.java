@@ -1,7 +1,8 @@
 package com.system.workorder.mapper;
 
-import com.system.workorder.domain.entity.Workorder;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.system.workorder.domain.entity.WorkOrder;
 
 /**
  * <p>
@@ -11,6 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author wugou
  * @since 2024-08-31
  */
-public interface WorkorderMapper extends BaseMapper<Workorder> {
+public interface WorkOrderMapper extends BaseMapper<WorkOrder> {
 
 }
