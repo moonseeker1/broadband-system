@@ -72,7 +72,7 @@ public class BusinessPeopleController extends BaseController{
         return R.ok(businessPeople);
     }
     @GetMapping("/list")
-    public TableDataInfo list(@RequestBody BusinessPeople businessPeople){
+    public TableDataInfo list(BusinessPeople businessPeople){
         startPage();
         List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
         return getDataTable(list);
@@ -81,7 +81,7 @@ public class BusinessPeopleController extends BaseController{
      *  远程调用查询
      */
     @PostMapping("/remote/list")
-    public R<List<BusinessPeople>> remoteList(@RequestBody BusinessPeople businessPeople){
+    public R<List<BusinessPeople>> remoteList(BusinessPeople businessPeople){
         List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
         return R.ok(list);
     }

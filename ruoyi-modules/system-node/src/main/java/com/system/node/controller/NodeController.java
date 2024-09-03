@@ -60,7 +60,7 @@ public class NodeController extends BaseController {
         return R.ok(node);
     }
     @GetMapping("/list")
-    public TableDataInfo list(@RequestBody Node node){
+    public TableDataInfo list(Node node){
         startPage();
         List<Node> list = nodeService.listNode(node);
         return getDataTable(list);

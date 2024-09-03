@@ -56,7 +56,7 @@ public class BroadbandServiceController extends BaseController {
     }
 
     @GetMapping("/list")
-    public TableDataInfo list(@RequestBody BroadbandService broadbandService){
+    public TableDataInfo list(BroadbandService broadbandService){
         startPage();
         List<BroadbandService> list = broadbandServiceService.listBroadbandService(broadbandService);
         return getDataTable(list);

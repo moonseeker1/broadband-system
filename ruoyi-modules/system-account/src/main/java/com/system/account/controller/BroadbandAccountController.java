@@ -88,7 +88,7 @@ public class BroadbandAccountController extends BaseController
         return R.ok(broadbandAccount);
     }
     @GetMapping("/list")
-    public TableDataInfo list(@RequestBody BroadbandAccount broadbandAccount){
+    public TableDataInfo list(BroadbandAccount broadbandAccount){
         startPage();
         List<BroadbandAccount> list = broadbandAccountService.selectBroadbandAccount(broadbandAccount);
         return getDataTable(list);

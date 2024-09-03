@@ -61,7 +61,7 @@ public class BroadbandComboController extends BaseController {
         return R.ok(broadbandCombo);
     }
     @GetMapping("/list")
-    public TableDataInfo list(@RequestBody BroadbandCombo broadbandCombo){
+    public TableDataInfo list(BroadbandCombo broadbandCombo){
         startPage();
         List<BroadbandCombo> list = broadbandComboService.listCombo(broadbandCombo);
         return getDataTable(list);
