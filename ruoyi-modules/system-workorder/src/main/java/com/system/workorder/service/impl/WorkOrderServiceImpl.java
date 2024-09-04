@@ -107,7 +107,7 @@ public class WorkOrderServiceImpl extends ServiceImpl<WorkOrderMapper, WorkOrder
         workorder.setWorkOrderId(IdUtil.getSnowflakeNextIdStr());
         workorder.setAccountId(SecurityUtils.getUserId().toString());
         workorder.setAccountName(SecurityUtils.getUsername());
-        BroadbandService broadbandService = remoteServiceService.getById(workorder.getWorkOrderId(),SecurityConstants.INNER).getData();
+        BroadbandService broadbandService = remoteServiceService.getById(workorder.getServiceId(),SecurityConstants.INNER).getData();
         workorder.setServiceName(broadbandService.getBroadbandServiceName());
         workorder.setWorkOrderName(broadbandService.getBroadbandServiceName()+ LocalDateTimeUtil.now());
         BroadbandAccount broadbandAccount = remoteAccountService.getById(SecurityUtils.getUserId().toString(),SecurityConstants.INNER).getData();
