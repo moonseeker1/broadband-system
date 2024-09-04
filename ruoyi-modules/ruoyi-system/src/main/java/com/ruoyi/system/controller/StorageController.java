@@ -1,5 +1,7 @@
 package com.ruoyi.system.controller;
 
+import com.ruoyi.common.core.web.controller.BaseController;
+import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.system.domain.StorageUploadResDTO;
 import com.ruoyi.system.service.StorageService;
 import io.swagger.annotations.Api;
@@ -22,13 +24,13 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/storage")
 @Api(tags = "存储相关接口")
-public class StorageController {
+public class StorageController extends BaseController {
     @Resource
     private StorageService storageService;
 
     @ApiOperation(value = "文件上传")
     @PostMapping("/upload")
-    public StorageUploadResDTO upload(@RequestPart("file") MultipartFile file) {
+    public AjaxResult upload(@RequestPart("file") MultipartFile file) {
         //获得文件扩展名
         String originalFilename = file.getOriginalFilename();
         String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -38,6 +40,6 @@ public class StorageController {
         } catch (IOException e) {
             log.error("文件上传失败,原因：", e);
         }
-        return new StorageUploadResDTO(url);
+        return success(new StorageUploadResDTO(url));
     }
 }

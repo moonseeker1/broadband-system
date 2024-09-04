@@ -14,6 +14,6 @@ import java.util.List;
 
 @FeignClient(contextId = "remoteWorkOrderService", value = "system-workorder")
 public interface RemoteWorkOrderService {
-    @GetMapping("/workOrder/list")
+    @GetMapping("/workOrder/remote/list")
     public R<List<WorkOrder>> list(WorkOrder workOrder);
 }

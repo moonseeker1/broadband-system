@@ -7,6 +7,7 @@ import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.system.api.RemoteAccountService;
 import com.ruoyi.system.api.RemoteBusinessService;
 import com.system.workorder.domain.entity.WorkOrder;
@@ -55,10 +56,17 @@ public class WorkOrderController extends BaseController {
         WorkOrderDetails workOrderDetails = workOrderService.getDetails(id);
         return success(workOrderDetails);
     }
-    @GetMapping("/list")
+    @GetMapping("/remote/list")
     public R<List<WorkOrder>> list(WorkOrder workOrder){
         List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
         return R.ok(list);
+    }
+    @GetMapping("/list")
+    public TableDataInfo listWorkOrder(WorkOrder workOrder){
+        startPage();
+        List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
+        return getDataTable(list);
+
     }
 
 }
