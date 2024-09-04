@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateTime;
 import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
+import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.security.service.TokenService;
 import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.system.api.RemoteComboService;
@@ -80,7 +81,10 @@ public class BroadbandAccountController extends BaseController
     @DeleteMapping("/{id}")
     public AjaxResult delete(@PathVariable String id){
         broadbandAccountService.removeById(id);
-        //TODO:后续校验用户是否存在套餐
+        BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
+        if(StringUtils.isNotBlank(broadbandAccount.getComboId())){
+            throw new ServiceException("账户下仍有套餐，无法删除");
+        }
         return success();
     }
     @GetMapping("/{id}")

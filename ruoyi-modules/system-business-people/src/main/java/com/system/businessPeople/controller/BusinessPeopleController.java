@@ -2,10 +2,13 @@ package com.system.businessPeople.controller;
 
 
 import com.ruoyi.common.core.domain.R;
+import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.security.service.TokenService;
 import com.ruoyi.common.security.utils.SecurityUtils;
+import com.ruoyi.system.api.RemoteWorkOrderService;
 import com.ruoyi.system.api.model.LoginUser;
+import com.ruoyi.system.api.model.WorkOrder;
 import com.system.businessPeople.domain.dto.LoginBody;
 import com.system.businessPeople.domain.dto.RegisterBody;
 import com.system.businessPeople.domain.entity.BusinessPeople;
@@ -34,6 +37,8 @@ public class BusinessPeopleController extends BaseController{
     private IBusinessPeopleService businessPeopleService;
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private RemoteWorkOrderService remoteWorkOrderService;
 
     @PostMapping("/add")
     public AjaxResult add(@RequestBody RegisterBody registerBody){
@@ -61,9 +66,13 @@ public class BusinessPeopleController extends BaseController{
         return success();
     }
     @DeleteMapping("/{id}")
-    public AjaxResult delete(@PathVariable Long id){
+    public AjaxResult delete(@PathVariable String id){
+        WorkOrder workOrder = new WorkOrder();
+        workOrder.setBusinessPeopleId(id);
+        if(!remoteWorkOrderService.list(workOrder).getData().isEmpty()){
+            throw new ServiceException("业务员仍有工单存在");
+        }
         businessPeopleService.removeById(id);
-        //TODO:后续校验业务员是否存在工单
         return success();
     }
     @GetMapping("/{id}")

@@ -3,9 +3,12 @@ package com.system.service.controller;
 
 import cn.hutool.core.util.IdUtil;
 import com.ruoyi.common.core.domain.R;
+import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
+import com.ruoyi.system.api.RemoteWorkOrderService;
+import com.ruoyi.system.api.model.WorkOrder;
 import com.system.service.domain.entity.BroadbandService;
 import com.system.service.domain.entity.ServiceType;
 import com.system.service.service.IBroadbandServiceService;
@@ -30,6 +33,8 @@ public class BroadbandServiceController extends BaseController {
     IBroadbandServiceService broadbandServiceService;
     @Autowired
     IServiceTypeService serviceTypeService;
+    @Autowired
+    RemoteWorkOrderService remoteWorkOrderService;
     @PostMapping("/add")
     public AjaxResult add(@RequestBody BroadbandService broadbandService){
         broadbandService.setBroadbandServiceId(IdUtil.getSnowflakeNextIdStr());
@@ -40,7 +45,11 @@ public class BroadbandServiceController extends BaseController {
     }
     @DeleteMapping("/{id}")
     public AjaxResult delete(@PathVariable String id){
-        //TODO:判断是否存在该服务工单
+        WorkOrder workOrder = new WorkOrder();
+        workOrder.setServiceId(id);
+        if(!remoteWorkOrderService.list(workOrder).getData().isEmpty()){
+            throw new ServiceException("存在服务订单无法删除");
+        }
         broadbandServiceService.removeById(id);
         return success();
     }

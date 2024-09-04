@@ -3,6 +3,7 @@ package com.system.workorder.controller;
 
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -15,6 +16,8 @@ import com.system.workorder.service.IWorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -51,6 +54,11 @@ public class WorkOrderController extends BaseController {
     public AjaxResult getDetails(@PathVariable String id){
         WorkOrderDetails workOrderDetails = workOrderService.getDetails(id);
         return success(workOrderDetails);
+    }
+    @GetMapping("/list")
+    public R<List<WorkOrder>> list(WorkOrder workOrder){
+        List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
+        return R.ok(list);
     }
 
 }

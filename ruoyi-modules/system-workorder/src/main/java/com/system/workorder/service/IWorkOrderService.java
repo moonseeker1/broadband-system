@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.system.workorder.domain.entity.WorkOrder;
 import com.system.workorder.domain.vo.WorkOrderDetails;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -16,4 +18,6 @@ import com.system.workorder.domain.vo.WorkOrderDetails;
 public interface IWorkOrderService extends IService<WorkOrder> {
 
     WorkOrderDetails getDetails(String id);
+
+    List<WorkOrder> listWorkOrder(WorkOrder workOrder);
 }
