@@ -142,7 +142,7 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
         Long userId = SecurityUtils.getUserId();
         BroadbandAccount broadbandAccount = broadbandAccountMapper.selectById(userId);
         BroadbandCombo broadbandCombo = remoteComboService.get(id,SecurityConstants.INNER).getData();
-        if(broadbandAccount.getComboId()!=null){
+        if(StringUtils.isNotBlank(broadbandAccount.getComboId())){
             throw new ServiceException("您已存在套餐无法添加");
         }
         else{

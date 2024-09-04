@@ -11,13 +11,13 @@ public class AccountCombo extends BroadbandCombo {
     private Date endTime;
     private String status;
     public AccountCombo(BroadbandCombo broadbandCombo){
-        AccountCombo accountCombo = new AccountCombo();
-        accountCombo.setComboId(broadbandCombo.getComboId());
-        accountCombo.setComboName(broadbandCombo.getComboName());
-        accountCombo.setBandwidth(broadbandCombo.getBandwidth());
-        accountCombo.setPrice(broadbandCombo.getPrice());
-        accountCombo.setUnit(broadbandCombo.getUnit());
-        accountCombo.setValue(broadbandCombo.getValue());
+
+        this.setComboId(broadbandCombo.getComboId());
+        this.setComboName(broadbandCombo.getComboName());
+        this.setBandwidth(broadbandCombo.getBandwidth());
+        this.setPrice(broadbandCombo.getPrice());
+        this.setUnit(broadbandCombo.getUnit());
+        this.setValue(broadbandCombo.getValue());
     }
     public AccountCombo(){
 

@@ -1,6 +1,8 @@
 package com.system.workorder.service.impl;
 
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson2.JSONArray;
@@ -101,11 +103,13 @@ public class WorkOrderServiceImpl extends ServiceImpl<WorkOrderMapper, WorkOrder
 
     @Override
     public void generateOrder(WorkOrder workorder) {
+
         workorder.setWorkOrderId(IdUtil.getSnowflakeNextIdStr());
         workorder.setAccountId(SecurityUtils.getUserId().toString());
         workorder.setAccountName(SecurityUtils.getUsername());
         BroadbandService broadbandService = remoteServiceService.getById(workorder.getWorkOrderId(),SecurityConstants.INNER).getData();
         workorder.setServiceName(broadbandService.getBroadbandServiceName());
+        workorder.setWorkOrderName(broadbandService.getBroadbandServiceName()+ LocalDateTimeUtil.now());
         BroadbandAccount broadbandAccount = remoteAccountService.getById(SecurityUtils.getUserId().toString(),SecurityConstants.INNER).getData();
         Node node = new Node();
         List<Node> list = remoteNodeService.remoteList(node,SecurityConstants.INNER).getData();

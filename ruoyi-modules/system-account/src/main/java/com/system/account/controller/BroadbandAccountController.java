@@ -103,7 +103,7 @@ public class BroadbandAccountController extends BaseController
     }
     @GetMapping("/combo")
     public AjaxResult getCombo(){
-        Long id = SecurityUtils.getUserId();
+        String id = SecurityUtils.getUserId().toString();
         BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
         BroadbandCombo broadbandCombo = remoteComboService.get(broadbandAccount.getComboId(), SecurityConstants.INNER).getData();
         AccountCombo accountCombo = new AccountCombo(broadbandCombo);
