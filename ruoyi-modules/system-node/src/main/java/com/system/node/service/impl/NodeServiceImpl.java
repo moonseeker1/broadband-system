@@ -26,7 +26,7 @@ public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements IN
     @Override
     public List<Node> listNode(Node node) {
         LambdaQueryWrapper<Node> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(StringUtils.isNotBlank(node.getNodeName()),Node::getNodeName,node.getNodeName());
+        lambdaQueryWrapper.like(StringUtils.isNotBlank(node.getNodeName()),Node::getNodeName,node.getNodeName());
         List<Node> list = nodeMapper.selectList(lambdaQueryWrapper);
         return list;
     }

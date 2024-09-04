@@ -26,9 +26,9 @@ public class BroadbandComboServiceImpl extends ServiceImpl<BroadbandComboMapper,
     @Override
     public List<BroadbandCombo> listCombo(BroadbandCombo broadbandCombo) {
         LambdaQueryWrapper<BroadbandCombo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(broadbandCombo.getUnit()!=null,BroadbandCombo::getUnit,broadbandCombo.getUnit())
-                .eq(StringUtils.isNotBlank(broadbandCombo.getComboName()), BroadbandCombo::getComboName, broadbandCombo.getComboName())
-                .eq(broadbandCombo.getBandwidth()!=null,BroadbandCombo::getBandwidth,broadbandCombo.getBandwidth());
+        lambdaQueryWrapper.like(broadbandCombo.getUnit()!=null,BroadbandCombo::getUnit,broadbandCombo.getUnit())
+                .like(StringUtils.isNotBlank(broadbandCombo.getComboName()), BroadbandCombo::getComboName, broadbandCombo.getComboName())
+                .like(broadbandCombo.getBandwidth()!=null,BroadbandCombo::getBandwidth,broadbandCombo.getBandwidth());
         List<BroadbandCombo> list = broadbandComboMapper.selectList(lambdaQueryWrapper);
         return list;
     }

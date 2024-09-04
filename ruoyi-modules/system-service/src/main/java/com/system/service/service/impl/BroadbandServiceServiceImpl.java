@@ -26,8 +26,8 @@ public class BroadbandServiceServiceImpl extends ServiceImpl<BroadbandServiceMap
     @Override
     public List<BroadbandService> listBroadbandService(BroadbandService broadbandService) {
         LambdaQueryWrapper<BroadbandService> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(StringUtils.isNotBlank(broadbandService.getBroadbandServiceName()),BroadbandService::getBroadbandServiceName,broadbandService.getBroadbandServiceName())
-                .eq(broadbandService.getTypeId()!=null,BroadbandService::getTypeId,broadbandService.getTypeId());
+        lambdaQueryWrapper.like(StringUtils.isNotBlank(broadbandService.getBroadbandServiceName()),BroadbandService::getBroadbandServiceName,broadbandService.getBroadbandServiceName())
+                .like(StringUtils.isNotBlank(broadbandService.getTypeId()),BroadbandService::getTypeId,broadbandService.getTypeId());
         List<BroadbandService> list = broadbandServiceMapper.selectList(lambdaQueryWrapper);
         return list;
     }
