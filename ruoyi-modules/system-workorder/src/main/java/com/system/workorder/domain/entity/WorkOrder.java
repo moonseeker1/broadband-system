@@ -31,10 +31,13 @@ public class WorkOrder implements Serializable {
     private String workOrderName;
 
     private String serviceId;
+    private String serviceName;
 
     private String businessPeopleId;
+    private String businessPeopleName;
 
     private String accountId;
+    private String accountName;
 
 
     private Integer state;

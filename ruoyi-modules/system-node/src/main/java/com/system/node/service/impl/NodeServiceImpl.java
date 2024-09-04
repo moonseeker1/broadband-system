@@ -1,12 +1,17 @@
 package com.system.node.service.impl;
 
+import cn.hutool.http.HttpUtil;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+
 import com.ruoyi.common.core.utils.StringUtils;
 import com.system.node.domain.entity.Node;
 import com.system.node.mapper.NodeMapper;
 import com.system.node.service.INodeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +28,7 @@ import java.util.List;
 public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements INodeService {
     @Autowired
     NodeMapper nodeMapper;
+
     @Override
     public List<Node> listNode(Node node) {
         LambdaQueryWrapper<Node> lambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -30,4 +36,6 @@ public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements IN
         List<Node> list = nodeMapper.selectList(lambdaQueryWrapper);
         return list;
     }
+
+
 }

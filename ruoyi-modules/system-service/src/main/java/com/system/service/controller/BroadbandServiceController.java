@@ -2,6 +2,7 @@ package com.system.service.controller;
 
 
 import cn.hutool.core.util.IdUtil;
+import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
@@ -15,6 +16,7 @@ import com.system.service.service.IBroadbandServiceService;
 import com.system.service.service.IServiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class BroadbandServiceController extends BaseController {
     public AjaxResult delete(@PathVariable String id){
         WorkOrder workOrder = new WorkOrder();
         workOrder.setServiceId(id);
-        if(!remoteWorkOrderService.list(workOrder).getData().isEmpty()){
+        if(!remoteWorkOrderService.list(workOrder, SecurityConstants.INNER).getData().isEmpty()){
             throw new ServiceException("存在服务订单无法删除");
         }
         broadbandServiceService.removeById(id);

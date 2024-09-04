@@ -76,4 +76,5 @@ public class BusinessPeople extends BaseEntity {
 
     private String name;
     private String nodeName;
+    private Integer orderCount;
 }

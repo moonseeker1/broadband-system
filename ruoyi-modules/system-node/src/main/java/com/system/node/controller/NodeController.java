@@ -65,6 +65,11 @@ public class NodeController extends BaseController {
         List<Node> list = nodeService.listNode(node);
         return getDataTable(list);
     }
+    @PostMapping ("/remote/list")
+    public R<List<Node>> remoteList(Node node){
+        List<Node> list = nodeService.listNode(node);
+        return R.ok(list);
+    }
 
 
 }

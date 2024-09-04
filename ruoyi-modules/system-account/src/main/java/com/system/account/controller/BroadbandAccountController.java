@@ -10,21 +10,16 @@ import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.security.service.TokenService;
 import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.system.api.RemoteComboService;
+import com.ruoyi.system.api.RemoteWorkOrderService;
 import com.ruoyi.system.api.model.BroadbandCombo;
 import com.ruoyi.system.api.model.LoginUser;
+import com.ruoyi.system.api.model.WorkOrder;
 import com.system.account.domain.dto.LoginBody;
 import com.system.account.domain.dto.RegisterBody;
 import com.system.account.domain.entity.BroadbandAccount;
 import com.system.account.domain.vo.AccountInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.system.account.service.IBroadbandAccountService;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -46,6 +41,8 @@ public class BroadbandAccountController extends BaseController
     private TokenService tokenService;
     @Autowired
     private RemoteComboService remoteComboService;
+    @Autowired
+    private RemoteWorkOrderService remoteWorkOrderService;
 
 
     @GetMapping("/sendCode/{phoneNumber}")
@@ -131,4 +128,12 @@ public class BroadbandAccountController extends BaseController
         broadbandAccountService.updateById(broadbandAccount);
         return success();
     }
+    @GetMapping("/listOrder")
+    public TableDataInfo listOrder(WorkOrder workOrder){
+        startPage();
+        workOrder.setAccountId(SecurityUtils.getUserId().toString());
+        List<WorkOrder> list = remoteWorkOrderService.list(workOrder, SecurityConstants.INNER).getData();
+        return getDataTable(list);
+    }
+
 }

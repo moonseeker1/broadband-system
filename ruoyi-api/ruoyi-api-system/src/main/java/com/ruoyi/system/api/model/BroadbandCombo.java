@@ -39,6 +39,7 @@ public class BroadbandCombo implements Serializable {
     private Integer value;
 
     private BigDecimal price;
+    private Integer bandwidth;
 
     /**
      * 创建用户id

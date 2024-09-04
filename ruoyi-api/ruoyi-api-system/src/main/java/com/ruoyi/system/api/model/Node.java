@@ -1,18 +1,17 @@
 package com.ruoyi.system.api.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wugou
@@ -21,28 +20,19 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("work_order")
-public class WorkOrder implements Serializable {
+@TableName("node")
+public class Node implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "work_order_id", type = IdType.AUTO)
-    private String workOrderId;
+    @TableId(value = "node_id", type = IdType.AUTO)
+    private String nodeId;
 
-    private String workOrderName;
+    private Double longitude;
 
-    private String serviceId;
-    private String serviceName;
+    private Double latitude;
 
-    private String businessPeopleId;
-    private String businessPeopleName;
-
-    private String accountId;
-    private String accountName;
-
-
-    private Integer state;
-
+    private String nodeName;
     /**
      * 创建用户id
      */

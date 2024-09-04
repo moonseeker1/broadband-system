@@ -36,8 +36,8 @@ public class WorkOrderController extends BaseController {
 
     @PostMapping("/generateOrder")
     public AjaxResult generateOrder(@RequestBody WorkOrder workorder){
-        workorder.setWorkOrderId(IdUtil.getSnowflakeNextIdStr());
-        workOrderService.save(workorder);
+        workOrderService.generateOrder(workorder);
+
         return success();
     }
     @DeleteMapping("/{id}")
@@ -56,7 +56,7 @@ public class WorkOrderController extends BaseController {
         WorkOrderDetails workOrderDetails = workOrderService.getDetails(id);
         return success(workOrderDetails);
     }
-    @GetMapping("/remote/list")
+    @PostMapping("/remote/list")
     public R<List<WorkOrder>> list(WorkOrder workOrder){
         List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
         return R.ok(list);
@@ -66,7 +66,11 @@ public class WorkOrderController extends BaseController {
         startPage();
         List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
         return getDataTable(list);
-
+    }
+    @PutMapping("/update")
+    public AjaxResult update(@RequestBody WorkOrder workOrder){
+        workOrderService.updateById(workOrder);
+        return success();
     }
 
 }

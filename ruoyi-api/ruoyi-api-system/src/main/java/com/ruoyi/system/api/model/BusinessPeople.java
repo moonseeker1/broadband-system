@@ -70,6 +70,7 @@ public class BusinessPeople extends BaseEntity {
      * 帐号状态（0正常 1停用）
      */
     private String status;
+    private Integer orderCount;
 
     private String name;
     private String nodeName;

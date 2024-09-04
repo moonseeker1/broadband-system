@@ -20,4 +20,8 @@ public interface IWorkOrderService extends IService<WorkOrder> {
     WorkOrderDetails getDetails(String id);
 
     List<WorkOrder> listWorkOrder(WorkOrder workOrder);
+
+    long getDistance(String startLonLat, String endLonLat);
+
+    void generateOrder(WorkOrder workorder);
 }
