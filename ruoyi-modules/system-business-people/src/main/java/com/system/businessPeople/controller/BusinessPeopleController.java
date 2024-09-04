@@ -118,6 +118,9 @@ public class BusinessPeopleController extends BaseController{
         WorkOrder workOrder = new WorkOrder();
         workOrder.setWorkOrderId(id);
         workOrder.setState(1);
+        BusinessPeople businessPeople = businessPeopleService.getById(SecurityUtils.getUserId());
+        businessPeople.setOrderCount(businessPeople.getOrderCount()-1);
+        businessPeopleService.updateById(businessPeople);
         remoteWorkOrderService.update(workOrder,SecurityConstants.INNER);
         return success();
     }

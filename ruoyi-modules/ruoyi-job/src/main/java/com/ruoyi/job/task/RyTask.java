@@ -58,6 +58,8 @@ public class RyTask
                 if(broadbandAccount.getEndTime().before(DateTime.now())){
                     broadbandAccount.setStatus("0");
                     broadbandAccount.setComboId(null);
+                    broadbandAccount.setBeginTime(null);
+                    broadbandAccount.setEndTime(null);
                     remoteAccountService.update(broadbandAccount,SecurityConstants.INNER);
                 }
             }

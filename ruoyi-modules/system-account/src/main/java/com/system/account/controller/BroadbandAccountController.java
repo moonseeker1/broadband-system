@@ -17,6 +17,7 @@ import com.ruoyi.system.api.model.WorkOrder;
 import com.system.account.domain.dto.LoginBody;
 import com.system.account.domain.dto.RegisterBody;
 import com.system.account.domain.entity.BroadbandAccount;
+import com.system.account.domain.vo.AccountCombo;
 import com.system.account.domain.vo.AccountInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -105,7 +106,11 @@ public class BroadbandAccountController extends BaseController
         Long id = SecurityUtils.getUserId();
         BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
         BroadbandCombo broadbandCombo = remoteComboService.get(broadbandAccount.getComboId(), SecurityConstants.INNER).getData();
-        return success(broadbandCombo);
+        AccountCombo accountCombo = new AccountCombo(broadbandCombo);
+        accountCombo.setBeginTime(broadbandAccount.getBeginTime());
+        accountCombo.setEndTime(broadbandAccount.getEndTime());
+        accountCombo.setStatus(broadbandAccount.getStatus());
+        return success(accountCombo);
     }
     @PostMapping("/addCombo/{id}")
     public AjaxResult addCombo(@PathVariable String id){
