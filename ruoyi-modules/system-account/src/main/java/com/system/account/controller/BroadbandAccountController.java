@@ -119,4 +119,12 @@ public class BroadbandAccountController extends BaseController
         broadbandAccountService.updateById(broadbandAccount);
         return success();
     }
+    @GetMapping("/cancelCombo")
+    public AjaxResult cancelCombo(){
+        BroadbandAccount broadbandAccount = new BroadbandAccount();
+        broadbandAccount.setStatus("3");
+        broadbandAccount.setAccountId(SecurityUtils.getUserId().toString());
+        broadbandAccountService.updateById(broadbandAccount);
+        return success();
+    }
 }

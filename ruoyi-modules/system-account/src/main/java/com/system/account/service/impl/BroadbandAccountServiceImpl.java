@@ -151,6 +151,7 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
             }
             broadbandAccount.setComboId(id);
             broadbandAccount.setStatus("1");
+            broadbandAccount.setAmount(broadbandAccount.getAmount().subtract(broadbandCombo.getPrice()));
             broadbandAccount.setBeginTime(DateTime.now());
 
             if(broadbandCombo.getUnit()==0){
