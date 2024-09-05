@@ -8,9 +8,12 @@ import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.system.service.domain.entity.BroadbandService;
 import com.system.service.domain.entity.ServiceType;
+import com.system.service.service.IBroadbandServiceService;
 import com.system.service.service.IServiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +31,8 @@ import java.util.List;
 public class ServiceTypeController extends BaseController {
     @Autowired
     IServiceTypeService serviceTypeService;
+    @Autowired
+    IBroadbandServiceService broadbandServiceService;
     @GetMapping("/typeTree")
     public AjaxResult typeTree(ServiceType serviceType) {
         LambdaQueryWrapper<ServiceType> lambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -52,7 +57,13 @@ public class ServiceTypeController extends BaseController {
         return success(serviceType);
     }
     @PutMapping("/update")
+    @Transactional
     public AjaxResult update(@RequestBody ServiceType serviceType){
+        LambdaQueryWrapper<BroadbandService> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(StringUtils.isNotBlank(serviceType.getTypeId()),BroadbandService::getTypeId,serviceType.getTypeId());
+        BroadbandService broadbandService = new BroadbandService();
+        broadbandService.setTypeName(serviceType.getTypeName());
+        broadbandServiceService.update(broadbandService,lambdaQueryWrapper);
         serviceTypeService.updateById(serviceType);
         return success();
     }
