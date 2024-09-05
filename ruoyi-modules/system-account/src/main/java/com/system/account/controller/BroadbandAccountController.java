@@ -78,11 +78,12 @@ public class BroadbandAccountController extends BaseController
     }
     @DeleteMapping("/{id}")
     public AjaxResult delete(@PathVariable String id){
-        broadbandAccountService.removeById(id);
+
         BroadbandAccount broadbandAccount = broadbandAccountService.getById(id);
         if(StringUtils.isNotBlank(broadbandAccount.getComboId())){
             throw new ServiceException("账户下仍有套餐，无法删除");
         }
+        broadbandAccountService.removeById(id);
         return success();
     }
     @GetMapping("/{id}")
