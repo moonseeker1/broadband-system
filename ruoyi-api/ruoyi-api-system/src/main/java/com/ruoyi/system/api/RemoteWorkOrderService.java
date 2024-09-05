@@ -15,6 +15,6 @@ import java.util.List;
 public interface RemoteWorkOrderService {
     @PostMapping ("/workOrder/remote/list")
     public R<List<WorkOrder>> list(@RequestBody WorkOrder workOrder,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
-    @PostMapping("/workOrder/update")
+    @PutMapping("/workOrder/update")
     public AjaxResult update(@RequestBody WorkOrder workOrder,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }
