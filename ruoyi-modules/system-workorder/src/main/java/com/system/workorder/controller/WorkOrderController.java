@@ -47,7 +47,7 @@ public class WorkOrderController extends BaseController {
         LambdaQueryWrapper<WorkOrder> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(id!=null,WorkOrder::getWorkOrderId,id);
         WorkOrder workorder = workOrderService.getById(id);
-        if(workorder.getState()!=2){
+        if(workorder.getState()!=1){
             throw new ServiceException("订单未完成，不可删除");
         }
         workOrderService.removeById(id);
