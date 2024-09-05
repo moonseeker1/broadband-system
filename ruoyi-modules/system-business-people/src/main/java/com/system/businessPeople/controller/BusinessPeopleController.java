@@ -54,7 +54,6 @@ public class BusinessPeopleController extends BaseController{
 
     @PostMapping("/add")
     public AjaxResult add(@RequestBody RegisterBody registerBody){
-
         businessPeopleService.add(registerBody);
         return success();
     }
@@ -106,7 +105,11 @@ public class BusinessPeopleController extends BaseController{
         List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
         return R.ok(list);
     }
-
+    @PostMapping ("/node")
+    public AjaxResult addNode(@RequestBody BusinessPeople businessPeople){
+        businessPeopleService.updateById(businessPeople);
+        return success();
+    }
     @GetMapping("/finish/{id}")
     public AjaxResult finish(@PathVariable String id){
         WorkOrder workOrder = new WorkOrder();
