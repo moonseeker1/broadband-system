@@ -106,13 +106,7 @@ public class BusinessPeopleController extends BaseController{
         List<BusinessPeople> list = businessPeopleService.listBusinessPeople(businessPeople);
         return R.ok(list);
     }
-    @GetMapping("/listOrder")
-    public TableDataInfo listOrder(WorkOrder workOrder){
-        startPage();
-        workOrder.setBusinessPeopleId(SecurityUtils.getUserId().toString());
-        List<WorkOrder> list = remoteWorkOrderService.list(workOrder, SecurityConstants.INNER).getData();
-        return getDataTable(list);
-    }
+
     @GetMapping("/finish/{id}")
     public AjaxResult finish(@PathVariable String id){
         WorkOrder workOrder = new WorkOrder();

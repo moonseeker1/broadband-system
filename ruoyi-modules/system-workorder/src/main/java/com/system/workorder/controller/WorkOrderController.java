@@ -3,11 +3,13 @@ package com.system.workorder.controller;
 
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
+import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.system.api.RemoteAccountService;
 import com.ruoyi.system.api.RemoteBusinessService;
 import com.system.workorder.domain.entity.WorkOrder;
@@ -71,6 +73,20 @@ public class WorkOrderController extends BaseController {
     public AjaxResult update(@RequestBody WorkOrder workOrder){
         workOrderService.updateById(workOrder);
         return success();
+    }
+    @GetMapping("/list/BusinessPeopleOrder")
+    public TableDataInfo listBusinessPeopleOrder(WorkOrder workOrder){
+        startPage();
+        workOrder.setBusinessPeopleId(SecurityUtils.getUserId().toString());
+        List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
+        return getDataTable(list);
+    }
+    @GetMapping("/list/AccountOrder")
+    public TableDataInfo listAccountOrder(WorkOrder workOrder){
+        startPage();
+        workOrder.setAccountId(SecurityUtils.getUserId().toString());
+        List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
+        return getDataTable(list);
     }
 
 }

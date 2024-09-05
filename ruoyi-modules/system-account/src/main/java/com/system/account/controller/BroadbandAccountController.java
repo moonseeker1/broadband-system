@@ -133,12 +133,6 @@ public class BroadbandAccountController extends BaseController
         broadbandAccountService.updateById(broadbandAccount);
         return success();
     }
-    @GetMapping("/listOrder")
-    public TableDataInfo listOrder(WorkOrder workOrder){
-        startPage();
-        workOrder.setAccountId(SecurityUtils.getUserId().toString());
-        List<WorkOrder> list = remoteWorkOrderService.list(workOrder, SecurityConstants.INNER).getData();
-        return getDataTable(list);
-    }
+
 
 }
