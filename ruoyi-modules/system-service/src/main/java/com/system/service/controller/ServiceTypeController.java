@@ -57,7 +57,7 @@ public class ServiceTypeController extends BaseController {
         return success(serviceType);
     }
     @PutMapping("/update")
-    @Transactional
+
     public AjaxResult update(@RequestBody ServiceType serviceType){
         LambdaQueryWrapper<BroadbandService> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(StringUtils.isNotBlank(serviceType.getTypeId()),BroadbandService::getTypeId,serviceType.getTypeId());
