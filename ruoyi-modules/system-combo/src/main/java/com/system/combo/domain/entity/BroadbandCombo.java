@@ -29,6 +29,7 @@ public class BroadbandCombo implements Serializable {
     @TableId(value = "combo_id")
     private String comboId;
     private String comboName;
+    private String comboImage;
 
     /**
      * 0-按月，1-按年

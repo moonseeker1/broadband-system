@@ -72,7 +72,7 @@ public class BusinessPeopleServiceImpl extends ServiceImpl<BusinessPeopleMapper,
     public List<BusinessPeople> listBusinessPeople(BusinessPeople businessPeople) {
         LambdaQueryWrapper<BusinessPeople> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.like(StringUtils.isNotBlank(businessPeople.getUserName()),BusinessPeople::getUserName,businessPeople.getUserName())
-//                .eq(StringUtils.isNotBlank(),BusinessPeople::getName,businessPeople.getName())
+                .eq(StringUtils.isNotBlank(businessPeople.getNodeId()),BusinessPeople::getNodeId,businessPeople.getNodeId())
                 .like(StringUtils.isNotBlank(businessPeople.getNodeName()),BusinessPeople::getNodeName,businessPeople.getNodeName())
                 .like(StringUtils.isNotBlank(businessPeople.getName()),BusinessPeople::getName,businessPeople.getName());
         List<BusinessPeople> list = businessPeopleMapper.selectList(lambdaQueryWrapper);
