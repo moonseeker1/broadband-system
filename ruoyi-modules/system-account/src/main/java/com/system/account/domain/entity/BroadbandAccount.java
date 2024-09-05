@@ -36,7 +36,7 @@ public class BroadbandAccount extends BaseEntity
     /** $column.columnComment */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private String comboId;
-
+    private String comboName;
     /** $column.columnComment */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private Date beginTime;

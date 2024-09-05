@@ -150,6 +150,7 @@ public class BroadbandAccountServiceImpl extends ServiceImpl<BroadbandAccountMap
                 throw new ServiceException("你的余额不足");
             }
             broadbandAccount.setComboId(id);
+            broadbandAccount.setComboName(broadbandCombo.getComboName());
             broadbandAccount.setStatus("1");
             broadbandAccount.setAmount(broadbandAccount.getAmount().subtract(broadbandCombo.getPrice()));
             broadbandAccount.setBeginTime(DateTime.now());
