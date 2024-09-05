@@ -82,6 +82,7 @@ public class BusinessPeopleController extends BaseController{
         WorkOrder workOrder = new WorkOrder();
         workOrder.setBusinessPeopleId(id);
         if(!remoteWorkOrderService.list(workOrder,SecurityConstants.INNER).getData().isEmpty()){
+            List<WorkOrder> list = remoteWorkOrderService.list(workOrder,SecurityConstants.INNER).getData();
             throw new ServiceException("业务员仍有工单存在");
         }
         businessPeopleService.removeById(id);

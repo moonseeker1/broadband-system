@@ -59,7 +59,7 @@ public class WorkOrderController extends BaseController {
         return success(workOrderDetails);
     }
     @PostMapping("/remote/list")
-    public R<List<WorkOrder>> list(WorkOrder workOrder){
+    public R<List<WorkOrder>> list(@RequestBody WorkOrder workOrder){
         List<WorkOrder> list = workOrderService.listWorkOrder(workOrder);
         return R.ok(list);
     }
