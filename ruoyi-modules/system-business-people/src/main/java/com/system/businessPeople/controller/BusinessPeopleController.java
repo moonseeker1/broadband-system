@@ -4,23 +4,19 @@ package com.system.businessPeople.controller;
 import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.exception.ServiceException;
+import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.security.service.TokenService;
 import com.ruoyi.common.security.utils.SecurityUtils;
-import com.ruoyi.system.api.RemoteAccountService;
-import com.ruoyi.system.api.RemoteBusinessService;
-import com.ruoyi.system.api.RemoteServiceService;
-import com.ruoyi.system.api.RemoteWorkOrderService;
-import com.ruoyi.system.api.model.BroadbandAccount;
-import com.ruoyi.system.api.model.BroadbandService;
-import com.ruoyi.system.api.model.LoginUser;
-import com.ruoyi.system.api.model.WorkOrder;
+import com.ruoyi.system.api.*;
+import com.ruoyi.system.api.model.*;
 import com.system.businessPeople.domain.dto.LoginBody;
 import com.system.businessPeople.domain.dto.RegisterBody;
 import com.system.businessPeople.domain.dto.WorkOrderDetail;
 import com.system.businessPeople.domain.entity.BusinessPeople;
 import com.system.businessPeople.domain.vo.BusinessPeopleInfo;
 import com.system.businessPeople.service.IBusinessPeopleService;
+import org.apache.poi.util.StringUtil;
 import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +47,8 @@ public class BusinessPeopleController extends BaseController{
     private RemoteServiceService remoteServiceService;
     @Autowired
     private RemoteAccountService remoteAccountService;
+    @Autowired
+    private RemoteNodeService remoteNodeService;
 
     @PostMapping("/add")
     public AjaxResult add(@RequestBody RegisterBody registerBody){
@@ -107,7 +105,15 @@ public class BusinessPeopleController extends BaseController{
     }
     @PostMapping ("/node")
     public AjaxResult addNode(@RequestBody BusinessPeople businessPeople){
-        businessPeopleService.updateById(businessPeople);
+        if(StringUtils.isNotBlank(businessPeople.getNodeId())){
+            BusinessPeople businessPeople1 = businessPeopleService.getById(businessPeople);
+            Node lastNode = remoteNodeService.getById(businessPeople1.getNodeId(),SecurityConstants.INNER).getData();
+            Node nowNode = remoteNodeService.getById(businessPeople.getNodeId(),SecurityConstants.INNER).getData();
+            lastNode.setBusinessPeopleCount(lastNode.getBusinessPeopleCount()-1);
+            remoteNodeService.update(lastNode,SecurityConstants.INNER);
+            remoteNodeService.update(nowNode,SecurityConstants.INNER);
+            businessPeopleService.updateById(businessPeople);
+        }
         return success();
     }
     @GetMapping("/finish/{id}")

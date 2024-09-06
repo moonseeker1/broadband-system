@@ -33,6 +33,7 @@ public class Node implements Serializable {
     private Double latitude;
 
     private String nodeName;
+    private Integer businessPeopleCount;
     /**
      * 创建用户id
      */
