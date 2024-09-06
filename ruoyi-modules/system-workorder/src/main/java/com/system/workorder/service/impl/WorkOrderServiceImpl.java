@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.ruoyi.common.core.constant.SecurityConstants;
+import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.system.api.RemoteAccountService;
@@ -114,8 +115,14 @@ public class WorkOrderServiceImpl extends ServiceImpl<WorkOrderMapper, WorkOrder
         Node node = new Node();
         List<Node> list = remoteNodeService.remoteList(node,SecurityConstants.INNER).getData();
         List<NodeDistance> distances = new ArrayList<>();
+        if(broadbandAccount.getLongitude()==null||broadbandAccount.getLatitude()==null){
+            throw new ServiceException("请设置用户位置");
+        }
         String endLonLat = broadbandAccount.getLongitude()+","+broadbandAccount.getLatitude();
         for(int i=0;i<list.size();i++){
+            if(list.get(i).getBusinessPeopleCount()==0){
+                continue;
+            }
             node = list.get(i);
             NodeDistance nodeDistance = new NodeDistance();
             nodeDistance.setId(node.getNodeId());

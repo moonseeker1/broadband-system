@@ -20,5 +20,5 @@ public interface RemoteNodeService {
     @PutMapping("/node/update")
     public AjaxResult update(@RequestBody Node node,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
     @GetMapping("/node/{id}")
-    public R<Node> getById(@PathVariable String id,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    public R<Node> getById(@PathVariable("id") String id,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

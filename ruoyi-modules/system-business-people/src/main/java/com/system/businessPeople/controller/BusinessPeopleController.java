@@ -105,16 +105,20 @@ public class BusinessPeopleController extends BaseController{
     }
     @PostMapping ("/node")
     public AjaxResult addNode(@RequestBody BusinessPeople businessPeople){
-        if(StringUtils.isNotBlank(businessPeople.getNodeId())){
+
             BusinessPeople businessPeople1 = businessPeopleService.getById(businessPeople);
-            Node lastNode = remoteNodeService.getById(businessPeople1.getNodeId(),SecurityConstants.INNER).getData();
-            Node nowNode = remoteNodeService.getById(businessPeople.getNodeId(),SecurityConstants.INNER).getData();
-            lastNode.setBusinessPeopleCount(lastNode.getBusinessPeopleCount()-1);
-            remoteNodeService.update(lastNode,SecurityConstants.INNER);
-            remoteNodeService.update(nowNode,SecurityConstants.INNER);
+            if(StringUtils.isNotBlank(businessPeople1.getNodeId())){
+                Node lastNode = remoteNodeService.getById(businessPeople1.getNodeId(),SecurityConstants.INNER).getData();
+                lastNode.setBusinessPeopleCount(lastNode.getBusinessPeopleCount()-1);
+                remoteNodeService.update(lastNode,SecurityConstants.INNER);
+            }
+            if(StringUtils.isNotBlank(businessPeople.getNodeId())){
+                Node nowNode = remoteNodeService.getById(businessPeople.getNodeId(),SecurityConstants.INNER).getData();
+                nowNode.setBusinessPeopleCount(nowNode.getBusinessPeopleCount()+1);
+                remoteNodeService.update(nowNode,SecurityConstants.INNER);
+            }
             businessPeopleService.updateById(businessPeople);
-        }
-        return success();
+            return success();
     }
     @GetMapping("/finish/{id}")
     public AjaxResult finish(@PathVariable String id){
