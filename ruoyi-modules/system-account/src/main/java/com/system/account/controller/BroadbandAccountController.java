@@ -71,7 +71,7 @@ public class BroadbandAccountController extends BaseController
         accountInfo.setUserName(SecurityUtils.getUsername());
         return success(accountInfo);
     }
-    @PutMapping()
+    @PutMapping("/update")
     public AjaxResult update(@RequestBody BroadbandAccount broadbandAccount){
         broadbandAccountService.updateById(broadbandAccount);
         return success();

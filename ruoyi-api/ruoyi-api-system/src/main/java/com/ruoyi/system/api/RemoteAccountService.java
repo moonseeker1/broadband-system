@@ -17,6 +17,6 @@ public interface RemoteAccountService {
     public R<List<BroadbandAccount>> remoteList(@RequestBody BroadbandAccount broadbandAccount, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
     @GetMapping("/account/{id}")
     public R<BroadbandAccount> getById(@PathVariable("id") String id,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
-    @PostMapping("/account/update")
+    @PutMapping("/account/update")
     public AjaxResult update(@RequestBody BroadbandAccount broadbandAccount,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }
