@@ -102,6 +102,8 @@ public class ServiceTypeServiceImpl extends ServiceImpl<ServiceTypeMapper, Servi
                 throw new ServiceException("存在分类服务，无法删除");
             }
         }
+        serviceTypeMapper.deleteById(id);
+
     }
 
 
